@@ -77,4 +77,12 @@ class ScholarshipCalculatorTest {
     @Test void gpaManyScores_95_85_75_65() {        
         assertEquals(2.5, calc.gpa(new double[]{95, 85, 75, 65}), 0.0001);    
     }
+// ===== Хэсэг D: зааг утга =====
+    @org.junit.jupiter.params.ParameterizedTest(name = "score {0} -> grade {1}")
+    @org.junit.jupiter.params.provider.CsvSource({
+        "0,F", "59.99,F", "60,D", "69.99,D", "70,C", "89.99,B", "90,A", "100,A"
+    })
+    void letterGradeBoundaries(double score, String expected) {
+        assertEquals(expected, calc.letterGrade(score));
+    }
 }
