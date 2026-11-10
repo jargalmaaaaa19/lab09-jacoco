@@ -111,7 +111,7 @@ Happy path тест нь эдгээр "аль нэг нь буруу болсо�
 | N7 –T→ N8, N8 –T→ N9 | `scholarship100_highGpaEnoughCredits` |
 | N7 –F→ N10, N10 –T→ N11, N11 –T→ N12 | `scholarship70_goodGpa13Credits` |
 | N8 –F→ N10 | `scholarship50_highGpaLowCredits` |
-| N11 –T→ N13, N13 –T→ N14 | `scholarship50_highGpaLowCredits` |
+| N11 –F→ N13, N13 –T→ N14 | `scholarship50_highGpaLowCredits` |
 | N10 –F→ N13 | `scholarship50_midGpa` |
 | N13 –F→ N15 | `scholarshipZero_lowGpa` |
 
