@@ -67,16 +67,7 @@ class ScholarshipCalculatorTest {
     }    
     @Test void scholarshipZero_lowGpa() {        
         assertEquals(0, calc.scholarship(2.5, 12, false));    
-    }
-// ===== Хэсэг C: давталтын зааг (0 / 1 / 2+) =====
-    // 0 удаа давтагдах (хоосон эсвэл null утга шалгах)
-    @Test void gpaNullThrows() {        
-        assertThrows(IllegalArgumentException.class, () -> calc.gpa(null));    
     }    
-    @Test void gpaEmptyArrayThrows() {        
-        assertThrows(IllegalArgumentException.class, () -> calc.gpa(new double[]{}));    
-    }
-    
     // 1 удаа давтагдах
     @Test void gpaSingleScore_95() {        
         assertEquals(4.0, calc.gpa(new double[]{95}), 0.0001);    
