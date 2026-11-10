@@ -23,4 +23,49 @@ class ScholarshipCalculatorTest {
     @Test void scholarship70_goodGpa13Credits() {
         assertEquals(70, calc.scholarship(3.5, 13, false));
     }
+// ===== Хэсэг B: 100% branch =====    
+    // letterGrade    
+    @Test void letterGradeNegativeThrows() {        
+        assertThrows(IllegalArgumentException.class, () -> calc.letterGrade(-1));    
+    }    
+    @Test void letterGradeOver100Throws() {        
+        assertThrows(IllegalArgumentException.class, () -> calc.letterGrade(101));    
+    }    
+    @Test void letterGradeC_75() { assertEquals("C", calc.letterGrade(75)); }    
+    @Test void letterGradeD_65() { assertEquals("D", calc.letterGrade(65)); }    
+    @Test void letterGradeF_50() { assertEquals("F", calc.letterGrade(50)); }    
+    
+    // gpa    
+    @Test void gpaNullThrows() {        
+        assertThrows(IllegalArgumentException.class, () -> calc.gpa(null));    
+    }    
+    @Test void gpaEmptyArrayThrows() {        
+        assertThrows(IllegalArgumentException.class, () -> calc.gpa(new double[]{}));    
+    }    
+    @Test void gpaMixed_C_D_F() {          // switch: C, D, default(F)        
+        assertEquals(1.0, calc.gpa(new double[]{75, 65, 50}), 0.0001);    
+    }    
+    
+    // scholarship    
+    @Test void scholarshipGpaNegativeThrows() {        
+        assertThrows(IllegalArgumentException.class, () -> calc.scholarship(-0.1, 15, false));    
+    }    
+    @Test void scholarshipGpaAboveFourThrows() {        
+        assertThrows(IllegalArgumentException.class, () -> calc.scholarship(4.1, 15, false));    
+    }    
+    @Test void scholarshipCreditsNegativeThrows() {        
+        assertThrows(IllegalArgumentException.class, () -> calc.scholarship(3.5, -1, false));    
+    }    
+    @Test void scholarshipViolationIsZero() {        
+        assertEquals(0, calc.scholarship(3.9, 16, true));    
+    }    
+    @Test void scholarship50_highGpaLowCredits() {   // 3.9, 10 → голч хангасан ч кредит дутуу        
+        assertEquals(50, calc.scholarship(3.9, 10, false));    
+    }    
+    @Test void scholarship50_midGpa() {              // 3.2 → 3.4-өөс бага        
+        assertEquals(50, calc.scholarship(3.2, 16, false));    
+    }    
+    @Test void scholarshipZero_lowGpa() {        
+        assertEquals(0, calc.scholarship(2.5, 12, false));    
+    }
 }
